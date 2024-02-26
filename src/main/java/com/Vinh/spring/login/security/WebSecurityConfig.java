@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login.security;
+package com.Vinh.spring.login.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,16 +18,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.bezkoder.spring.login.security.jwt.AuthEntryPointJwt;
-import com.bezkoder.spring.login.security.jwt.AuthTokenFilter;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsServiceImpl;
+import com.Vinh.spring.login.security.jwt.AuthEntryPointJwt;
+import com.Vinh.spring.login.security.jwt.AuthTokenFilter;
+import com.Vinh.spring.login.security.services.impl.UserDetailsServiceImpl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -35,11 +37,20 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 //jsr250Enabled = true,
 //prePostEnabled = true) // by default
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
+
   @Autowired
   UserDetailsServiceImpl userDetailsService;
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
+
+
+  private final WebClient userInfoClient;
+
+  public WebSecurityConfig(AuthEntryPointJwt unauthorizedHandler, WebClient userInfoClient) {
+    this.unauthorizedHandler = unauthorizedHandler;
+    this.userInfoClient = userInfoClient;
+  }
 
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() { // * Check carefully
@@ -111,15 +122,32 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
 //                  .requestMatchers("/api/v1/users/**").permitAll()
               .requestMatchers("/api/test/**").permitAll()
-              .anyRequest().authenticated()
-        );
-    
+              .anyRequest()
+                  .authenticated()
+        )
+            .oauth2ResourceServer(session -> session.opaqueToken(Customizer.withDefaults()));
+//            .logout(logout -> logout
+//                    .logoutSuccessHandler(oidcLogoutSuccessHandler())
+//                    .invalidateHttpSession(true)
+//                    .clearAuthentication(true)
+//                    .deleteCookies("JSESSIONID")
+//            );
+
+
     http.authenticationProvider(authenticationProvider());
 
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     
     return http.build();
   }
+
+
+//  private OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler() {
+//    OidcClientInitiatedLogoutSuccessHandler successHandler = new OidcClientInitiatedLogoutSuccessHandler(
+//            clientRegistrationRepository);
+//    successHandler.setPostLogoutRedirectUri("http://localhost:8080/");
+//    return successHandler;
+//  }
 
   @Bean
   public FilterRegistrationBean corsFilter() {
@@ -137,5 +165,10 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
     bean.setOrder(0);
     return bean;
+  }
+
+  @Bean
+  public OpaqueTokenIntrospector introspector() {
+    return new GoogleOpaqueTokenIntrospector(userInfoClient);
   }
 }

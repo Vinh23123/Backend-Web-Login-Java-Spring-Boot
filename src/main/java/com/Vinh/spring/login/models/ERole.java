@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login.models;
+package com.Vinh.spring.login.models;
 
 public enum ERole {
   ROLE_USER,

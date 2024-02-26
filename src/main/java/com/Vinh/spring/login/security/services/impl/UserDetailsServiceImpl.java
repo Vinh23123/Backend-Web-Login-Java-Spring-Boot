@@ -1,9 +1,9 @@
-package com.bezkoder.spring.login.security.services.impl;
+package com.Vinh.spring.login.security.services.impl;
 
-import com.bezkoder.spring.login.exception.ResourceNotFoundException;
-import com.bezkoder.spring.login.payload.request.UserDto;
-import com.bezkoder.spring.login.security.services.UserService;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsImpl;
+import com.Vinh.spring.login.exception.ResourceNotFoundException;
+import com.Vinh.spring.login.payload.request.UserDto;
+import com.Vinh.spring.login.security.services.UserService;
+import com.Vinh.spring.login.security.services.impl.UserDetailsImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bezkoder.spring.login.models.User;
-import com.bezkoder.spring.login.repository.UserRepository;
+import com.Vinh.spring.login.models.User;
+import com.Vinh.spring.login.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

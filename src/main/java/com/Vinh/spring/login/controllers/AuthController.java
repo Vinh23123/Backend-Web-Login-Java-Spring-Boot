@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login.controllers;
+package com.Vinh.spring.login.controllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bezkoder.spring.login.models.ERole;
-import com.bezkoder.spring.login.models.Role;
-import com.bezkoder.spring.login.models.User;
-import com.bezkoder.spring.login.payload.request.LoginRequestDto;
-import com.bezkoder.spring.login.payload.request.SignupRequestDto;
-import com.bezkoder.spring.login.payload.response.UserInfoResponse;
-import com.bezkoder.spring.login.payload.response.MessageResponse;
-import com.bezkoder.spring.login.repository.RoleRepository;
-import com.bezkoder.spring.login.repository.UserRepository;
-import com.bezkoder.spring.login.security.jwt.JwtUtils;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsImpl;
+import com.Vinh.spring.login.models.ERole;
+import com.Vinh.spring.login.models.Role;
+import com.Vinh.spring.login.models.User;
+import com.Vinh.spring.login.payload.request.LoginRequestDto;
+import com.Vinh.spring.login.payload.request.SignupRequestDto;
+import com.Vinh.spring.login.payload.response.UserInfoResponse;
+import com.Vinh.spring.login.payload.response.MessageResponse;
+import com.Vinh.spring.login.repository.RoleRepository;
+import com.Vinh.spring.login.repository.UserRepository;
+import com.Vinh.spring.login.security.jwt.JwtUtils;
+import com.Vinh.spring.login.security.services.impl.UserDetailsImpl;
 
 //@CrossOrigin(origins = "*", maxAge = 3600)
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")

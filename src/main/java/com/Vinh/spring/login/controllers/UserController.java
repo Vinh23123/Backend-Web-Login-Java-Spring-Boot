@@ -1,15 +1,18 @@
-package com.bezkoder.spring.login.controllers;
+package com.Vinh.spring.login.controllers;
 
 
-import com.bezkoder.spring.login.exception.ResourceNotFoundException;
-import com.bezkoder.spring.login.models.User;
-import com.bezkoder.spring.login.payload.request.UserDto;
-import com.bezkoder.spring.login.repository.UserRepository;
-import com.bezkoder.spring.login.security.services.UserService;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsServiceImpl;
+import com.Vinh.spring.login.exception.ResourceNotFoundException;
+import com.Vinh.spring.login.models.User;
+import com.Vinh.spring.login.payload.request.UserDto;
+import com.Vinh.spring.login.repository.UserRepository;
+import com.Vinh.spring.login.security.services.UserService;
+import com.Vinh.spring.login.security.services.impl.UserDetailsServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -75,5 +78,8 @@ public class UserController {
         UserDto userResponse = userService.updateUserById(userDtoDetails,id);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
+
+
+
 
 }

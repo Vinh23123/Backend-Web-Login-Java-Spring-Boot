@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login.exception;
+package com.Vinh.spring.login.exception;
 
 public class ResourceNotFoundException  extends RuntimeException{
     private String resourceName;
