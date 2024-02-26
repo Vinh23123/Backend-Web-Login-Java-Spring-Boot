@@ -9,4 +9,6 @@ public record UserInfo(
         String email,
         boolean email_verified,
         String locale
+
+
 ) { }
