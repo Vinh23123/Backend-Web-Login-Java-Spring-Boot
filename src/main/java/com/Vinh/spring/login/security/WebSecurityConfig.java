@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login.security;
+package com.Vinh.spring.login.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -20,13 +20,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.bezkoder.spring.login.security.jwt.AuthEntryPointJwt;
-import com.bezkoder.spring.login.security.jwt.AuthTokenFilter;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsServiceImpl;
+import com.Vinh.spring.login.security.jwt.AuthEntryPointJwt;
+import com.Vinh.spring.login.security.jwt.AuthTokenFilter;
+import com.Vinh.spring.login.security.services.impl.UserDetailsServiceImpl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -40,6 +39,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
+
+
 
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() { // * Check carefully

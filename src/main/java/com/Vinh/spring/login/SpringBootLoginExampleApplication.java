@@ -1,4 +1,4 @@
-package com.bezkoder.spring.login;
+package com.Vinh.spring.login;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

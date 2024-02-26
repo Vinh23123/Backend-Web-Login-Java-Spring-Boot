@@ -1,12 +1,12 @@
-package com.bezkoder.spring.login.controllers;
+package com.Vinh.spring.login.controllers;
 
 
-import com.bezkoder.spring.login.exception.ResourceNotFoundException;
-import com.bezkoder.spring.login.models.User;
-import com.bezkoder.spring.login.payload.request.UserDto;
-import com.bezkoder.spring.login.repository.UserRepository;
-import com.bezkoder.spring.login.security.services.UserService;
-import com.bezkoder.spring.login.security.services.impl.UserDetailsServiceImpl;
+import com.Vinh.spring.login.exception.ResourceNotFoundException;
+import com.Vinh.spring.login.models.User;
+import com.Vinh.spring.login.payload.request.UserDto;
+import com.Vinh.spring.login.repository.UserRepository;
+import com.Vinh.spring.login.security.services.UserService;
+import com.Vinh.spring.login.security.services.impl.UserDetailsServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

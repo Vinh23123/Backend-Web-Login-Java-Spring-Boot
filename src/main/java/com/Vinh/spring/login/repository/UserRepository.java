@@ -1,12 +1,12 @@
-package com.bezkoder.spring.login.repository;
+package com.Vinh.spring.login.repository;
 
 import java.util.Optional;
 
-import com.bezkoder.spring.login.payload.request.UserDto;
+import com.Vinh.spring.login.payload.request.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import com.bezkoder.spring.login.models.User;
+import com.Vinh.spring.login.models.User;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
